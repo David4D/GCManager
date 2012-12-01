@@ -22,7 +22,7 @@
 
 #import "ViewController.h"
 
-#define LeaderBoardID @"nupogodi"
+#define LeaderBoardID @"leaderboard"
 #define AchievementID @"1000Points"
 
 @implementation ViewController
@@ -75,7 +75,7 @@
 
 - (IBAction) showLeaderboard {
     if([[GCManager sharedManager] isGameCenterAvailable]) {
-        GKLeaderboardViewController * leaderboardViewController = [[GCManager sharedManager] gkLeaderBoardControllerWithTimeScope:GKLeaderboardTimeScopeAllTime delegate: self];
+        GKLeaderboardViewController * leaderboardViewController = [[GCManager sharedManager] gkLeaderBoardControllerWithTimeScope:GKLeaderboardTimeScopeAllTime category:LeaderBoardID delegate: self];
         if ([self respondsToSelector:@selector(presentViewController:animated:completion:)])
             [self presentViewController: leaderboardViewController animated: YES completion:^{}];
         else

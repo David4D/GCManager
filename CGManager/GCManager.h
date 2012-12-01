@@ -77,9 +77,10 @@
 // Returns currently authenticated local player. If no player is authenticated, "unknownPlayer" is returned.
 - (NSString *)localPlayerId;
 
-// GKLeaderboardViewController with scope and delegate
+// GKLeaderboardViewController with scope, leaderboard id and delegate
 - (GKLeaderboardViewController *) gkLeaderBoardControllerWithTimeScope: (GKLeaderboardTimeScope) scope
-                                                    delegate: (id<GKLeaderboardViewControllerDelegate>) delegate;
+                                                              category: (NSString *) category
+                                                              delegate: (id<GKLeaderboardViewControllerDelegate>) delegate;
 
 // GKAchievementViewController with delegate
 - (GKAchievementViewController *) gkAchievementControllerWithDelegate: (id<GKAchievementViewControllerDelegate>) delegate;

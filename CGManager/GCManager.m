@@ -484,11 +484,13 @@
 }
 
 - (GKLeaderboardViewController *) gkLeaderBoardControllerWithTimeScope: (GKLeaderboardTimeScope) scope
-                                                    delegate: (id<GKLeaderboardViewControllerDelegate>) delegate
+                                                              category: (NSString *) category
+                                                              delegate: (id<GKLeaderboardViewControllerDelegate>) delegate
 {
     GKLeaderboardViewController * leaderboardViewController = [GKLeaderboardViewController new];
     leaderboardViewController.timeScope = GKLeaderboardTimeScopeAllTime;
     leaderboardViewController.leaderboardDelegate = delegate;
+    leaderboardViewController.category = category;
     return leaderboardViewController;
 }
 
