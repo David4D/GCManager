@@ -12,9 +12,6 @@ GCManager helps you manage the Game Center aspect of your game. It makes it easy
 - Encryption of data
 - ARC support
 
-## Demo
-Open `GСManagerDemo.xcodeproj`, setup bundle identifier for app with Game Center support and run it.
-
 ## Installation
 
 1. Add the `GameKit` and `SystemConfiguration` frameworks to your Xcode project
@@ -23,7 +20,7 @@ Open `GСManagerDemo.xcodeproj`, setup bundle identifier for app with Game Cente
  - GCManager.m
  - NSDataAES256.h
  - NSDataAES256.m
-3. Open the `GCManager.h` file and change the `kGCManagerKey` constant to the secret key you want to use for encryption/decryption
+3. Open the `GCManager.m` file and change the `kGCManagerKey` constant to the secret key you want to use for encryption/decryption
 4. Import the `GCManager.h` file
 5. Enjoy
 
