@@ -72,28 +72,28 @@
     
     if(isGameCenterAPIAvailable) {
         _isGameCenterAvailable = YES;
-        
-        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {        
-            if(error == nil) {
-                if(![[NSUserDefaults standardUserDefaults] boolForKey:[@"scoresSynced" stringByAppendingString:[[GCManager sharedManager] localPlayerId]]] ||
-                   ![[NSUserDefaults standardUserDefaults] boolForKey:[@"achievementsSynced" stringByAppendingString:[[GCManager sharedManager] localPlayerId]]]) {
-                    [[GCManager sharedManager] syncGameCenter];
-                }
-                else {
-                    [[GCManager sharedManager] reportSavedScoresAndAchievements];
-                }
-            }
-            else {
-                if(error.code == GKErrorNotSupported) {
-                    _isGameCenterAvailable = NO;
-                }
-            }
-            NSMutableDictionary * userInfo = [NSMutableDictionary new];
-            if (error) [userInfo setObject:error forKey:@"error"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kGCManagerAvailabilityNotification
-                                                                object:[GCManager sharedManager]
-                                                              userInfo:userInfo];
-        }];
+       GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+       localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error) {
+          if(error == nil) {
+             if(![[NSUserDefaults standardUserDefaults] boolForKey:[@"scoresSynced" stringByAppendingString:[[GCManager sharedManager] localPlayerId]]] ||
+                ![[NSUserDefaults standardUserDefaults] boolForKey:[@"achievementsSynced" stringByAppendingString:[[GCManager sharedManager] localPlayerId]]]) {
+                [[GCManager sharedManager] syncGameCenter];
+             }
+             else {
+                [[GCManager sharedManager] reportSavedScoresAndAchievements];
+             }
+          }
+          else {
+             if(error.code == GKErrorNotSupported) {
+                _isGameCenterAvailable = NO;
+             }
+          }
+          NSMutableDictionary * userInfo = [NSMutableDictionary new];
+          if (error) [userInfo setObject:error forKey:@"error"];
+          [[NSNotificationCenter defaultCenter] postNotificationName:kGCManagerAvailabilityNotification
+                                                              object:[GCManager sharedManager]
+                                                            userInfo:userInfo];
+       };
     }
 }
 
